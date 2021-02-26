@@ -29,7 +29,7 @@ async function alertify(options){
   // --Buttons--
   let buttons= document.createElement('div');
   buttons.className= 'alertButtons';
-  childen.push(buttons);
+  children.push(buttons);
   let buttonChildren=[];
   // --Confirm Button--
   let confirmButton = document.createElement("div");
