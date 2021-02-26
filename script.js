@@ -12,7 +12,7 @@ async function alertify(options){
   // --Alert Title--
   let alertTitle = document.createElement('div');
   alertTitle.className = 'alertTitle';
-  alertTitle.innerText = options.title||"";
+  alertTitle.innerHTML = options.title||"";
   children.push(alertTitle);
   //--Alert Content--
   let alertContent = document.createElement('div');
@@ -24,6 +24,19 @@ async function alertify(options){
     alertContent.innerText= options.text;
   }
   children.push(alertContent);
+  // --ALert Input--
+  if(options.input){
+    let alertInput = document.createElement('input');
+    if(options.inputSetAttributes){
+      let inputAttributes= options.inputSetAttributes;
+      let attributes= Object.keys(inputAttributes);
+      let values= Object.values(inputAttributes);
+      for(let i=0;i<attributes.length;i++){
+        alertInput.setAttribute(attributes[i],values[i]);
+      }
+    }
+    children.push(alertInput);
+  }
   // --Buttons--
   let buttons= document.createElement('div');
   buttons.className= 'alertButtons';
@@ -32,14 +45,14 @@ async function alertify(options){
   // --Confirm Button--
   let confirmButton = document.createElement("div");
   confirmButton.className = "confirmButton";
-  confirmButton.innerText= options.confirmButtonText||"Ok";
+  confirmButton.innerHTML= options.confirmButtonText||"Ok";
   confirmButton.style.background= options.confirmButtonColor || '#3cb371';
   buttonChildren.push(confirmButton);
   // --Cancel Button--
   if(options.cancelButton){
     let cancelButton = document.createElement('div');
     cancelButton.className='cancelButton';
-    cancelButton.innerText= options.cancelButtonText||'Cancel';
+    cancelButton.innerHTML= options.cancelButtonText||'Cancel';
     cancelButton.style.background= options.cancelButtonColor || '#aaa';
     buttonChildren.push(cancelButton);
   }
@@ -47,7 +60,7 @@ async function alertify(options){
   if(options.denyButton){
     let denyButton = document.createElement('div');
     denyButton.className='denyButton';
-    denyButton.innerText= options.denyButtonText||'No';
+    denyButton.innerHTML= options.denyButtonText||'No';
     denyButton.style.background= options.denyButtonColor || '#ff7f7f';
     buttonChildren.push(denyButton);
   }
