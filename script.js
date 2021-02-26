@@ -14,7 +14,7 @@ async function alertify(options){
   // --Alert Title--
   let alertTitle = document.createElement('div');
   alertTitle.className = 'alertTitle';
-  alertTitle.innerText = options.title;
+  alertTitle.innerText = options.title||"";
   children.push(alertTitle);
   //--Alert Content--
   let alertContent = document.createElement('div');
