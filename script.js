@@ -35,6 +35,7 @@ async function alertify(options){
         alertInput.setAttribute(attributes[i],values[i]);
       }
     }
+    alertInput.classList.add("alertInput");
     children.push(alertInput);
   }
   // --Buttons--
