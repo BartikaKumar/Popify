@@ -26,11 +26,16 @@ async function alertify(options){
     alertContent.innerText= options.text;
   }
   children.push(alertContent);
+  // --Buttons--
+  let buttons= document.createElement('div');
+  buttons.className= 'alertButtons';
+  childen.push(buttons);
+  let buttonChildren=[];
   // --Confirm Button--
   let confirmButton = document.createElement("div");
   confirmButton.className = "confirmButton";
   confirmButton.innerText= options.confirmButtonText||"Ok";
-  children.push(confirmButton);
+  buttonChildren.push(confirmButton);
   // --Secondary Button--
   if(options.secondaryButton){
     let secondaryButton = document.createElement('div');
@@ -44,7 +49,7 @@ async function alertify(options){
       defaultSecondaryButtonText='Cancel';
     }
     secondaryButton.innerText= options.secondaryButtonText||defaultSecondaryButtonText;
-    children.push(secondaryButton);
+    buttonChildren.push(secondaryButton);
   }
   // --Append Alert--
   document.body.appendChild(alertBackdrop);
@@ -53,6 +58,10 @@ async function alertify(options){
   for(let i=0;i<children.length;i++){
     alertBox.appendChild(children[i]);
   }
+  for(let i=0; i<buttonChildren.length;i++){
+    buttons.appendChild(buttonChildren);
+  }
   children=[];
+  buttonChildren=[];
   // --Afterwards--
 }
