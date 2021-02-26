@@ -25,7 +25,7 @@ async function alertify(options){
   else if(options.hasOwnProperty('text')){
     alertContent.innerText= options.text;
   }
-  chidren.push(alertContent);
+  children.push(alertContent);
   // --Confirm Button--
   let confirmButton = document.createElement("div");
   confirmButton.className = "confirmButton";
