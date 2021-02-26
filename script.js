@@ -1,4 +1,4 @@
-function alertify(options){
+async function alertify(options){
   // --Alert Backdrop--
   let alertBackdrop= document.createElement('div');
   alertBackdrop.className='alertBackdrop';
