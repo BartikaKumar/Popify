@@ -8,9 +8,6 @@ async function alertify(options){
   if(options.darkMode){
     alertBox.classList.add('alertBoxDark');
   }
-  else{
-    alertBox.classList.add('alertBoxLight');
-  }
   let children= [];
   // --Alert Title--
   let alertTitle = document.createElement('div');
