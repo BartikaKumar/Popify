@@ -4,11 +4,12 @@ async function alertify(options){
   alertBackdrop.className='alertBackdrop';
   // --Alert Box--
   let alertBox = document.createElement("div");
+  alertBox.className = 'alertBox';
   if(options.darkMode){
-    alertBox.className='alertBoxDark';
+    alertBox.classList.add('alertBoxDark');
   }
   else{
-    alertBox.className='alertBoxLight';
+    alertBox.classList.add('alertBoxLight');
   }
   let children= [];
   // --Alert Title--
