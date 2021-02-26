@@ -1,4 +1,7 @@
 async function alert(options){
+  // --Alert Backdrop--
+  let alertBackdrop= document.createElement('div');
+  alertBackdrop.className='alertBackdrop';
   // --Alert Box--
   let alertBox = document.createElement("div");
   if(options.darkMode){
@@ -36,7 +39,7 @@ async function alert(options){
   // --Secondary Button--
   if(options.secondaryButton){
     let secondaryButton = document.createElement('div');
-    var defaultSecondaryButtonText;
+    let defaultSecondaryButtonText;
     if(options.secondaryButtonMode=="deny"){
       secondaryButton.className='denyButton';
       defaultSecondaryButtonText='No';
@@ -53,5 +56,13 @@ async function alert(options){
     }
     children.push(secondaryButton);
   }
+  // --Append Alert--
+  document.body.appendChild(alertBackdrop);
+  alertBackdrop.appendChild(alertBox);
+  // --Append Alert Contents--
+  for(let i=0;i<children.length;i++){
+    alertBox.appendChild(children[i]);
+  }
+  children=[];
   // --Afterwards--
 }
