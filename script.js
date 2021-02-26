@@ -38,14 +38,14 @@ async function alertify(options){
   if(options.cancelButton){
     let cancelButton = document.createElement('div');
     cancelButton.className='cancelButton';
-    cancelButton.innerText= options.secondaryButtonText||'Cancel';
+    cancelButton.innerText= options.cancelButtonText||'Cancel';
     buttonChildren.push(cancelButton);
   }
   // --Deny Button--
   if(options.denyButton){
     let denyButton = document.createElement('div');
     denyButton.className='denyButton';
-    denyButton.innerText= options.secondaryButtonText||'No';
+    denyButton.innerText= options.denyButtonText||'No';
     buttonChildren.push(denyButton);
   }
   // --Footer--
