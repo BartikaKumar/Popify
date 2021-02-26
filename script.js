@@ -43,7 +43,7 @@ async function alertify(options){
   }
   // --Deny Button--
   if(options.denyButton){
-    let secondaryButton = document.createElement('div');
+    let denyButton = document.createElement('div');
     denyButton.className='denyButton';
     denyButton.innerText= options.secondaryButtonText||'No';
     buttonChildren.push(denyButton);
