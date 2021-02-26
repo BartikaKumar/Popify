@@ -51,6 +51,13 @@ async function alertify(options){
     secondaryButton.innerText= options.secondaryButtonText||defaultSecondaryButtonText;
     buttonChildren.push(secondaryButton);
   }
+  // --Footer--
+  if(options.footer){
+    let footer= document.createElement('div');
+    footer.className='alertFooter';
+    footer.innerHTML=options.footer;
+    children.push(footer);
+  }
   // --Append Alert--
   document.body.appendChild(alertBackdrop);
   alertBackdrop.appendChild(alertBox);
