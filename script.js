@@ -34,20 +34,19 @@ async function alertify(options){
   confirmButton.className = "confirmButton";
   confirmButton.innerText= options.confirmButtonText||"Ok";
   buttonChildren.push(confirmButton);
-  // --Secondary Button--
-  if(options.secondaryButton){
+  // --Cancel Button--
+  if(options.cancelButton){
+    let cancelButton = document.createElement('div');
+    cancelButton.className='cancelButton';
+    cancelButton.innerText= options.secondaryButtonText||'Cancel';
+    buttonChildren.push(cancelButton);
+  }
+  // --Deny Button--
+  if(options.denyButton){
     let secondaryButton = document.createElement('div');
-    let defaultSecondaryButtonText;
-    if(options.secondaryButtonMode=="deny"){
-      secondaryButton.className='denyButton';
-      defaultSecondaryButtonText='No';
-    }
-    else{
-      secondaryButton.className='cancelButton';
-      defaultSecondaryButtonText='Cancel';
-    }
-    secondaryButton.innerText= options.secondaryButtonText||defaultSecondaryButtonText;
-    buttonChildren.push(secondaryButton);
+    denyButton.className='denyButton';
+    denyButton.innerText= options.secondaryButtonText||'No';
+    buttonChildren.push(denyButton);
   }
   // --Footer--
   if(options.footer){
