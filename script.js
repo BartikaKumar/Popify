@@ -29,12 +29,7 @@ async function alertify(options){
   // --Confirm Button--
   let confirmButton = document.createElement("div");
   confirmButton.className = "confirmButton";
-  if(options.hasOwnProperty('confirmButtonText')){
-    confirmButton.innerText= options.confirmButtonText;
-  }
-  else{
-    confirmButton.innerText= 'OK';
-  }
+  confirmButton.innerText= options.confirmButtonText||"Ok";
   children.push(confirmButton);
   // --Secondary Button--
   if(options.secondaryButton){
@@ -48,12 +43,7 @@ async function alertify(options){
       secondaryButton.className='cancelButton';
       defaultSecondaryButtonText='Cancel';
     }
-    if(options.hasOwnProperty('secondaryButtonText')){
-      secondaryButton.innerText= options.secondaryButtonText;
-    }
-    else{
-      secondaryButton.innerText= defaultSecondaryButtonText;
-    }
+    secondaryButton.innerText= options.secondaryButtonText||defaultSecondaryButtonText;
     children.push(secondaryButton);
   }
   // --Append Alert--
