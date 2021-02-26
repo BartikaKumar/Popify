@@ -85,4 +85,18 @@ async function alertify(options){
   children=[];
   buttonChildren=[];
   // --Afterwards--
+  function close(action){
+    let stats={
+      isConfirmed:false,
+      isDenied:false,
+      isCanceled:false,
+      timeUp:false,
+      inputValue: alertInput.value,
+    };
+    stats.action= true;
+    return stats;
+  };
+  confirmButton.onclick= close(isConfirmed);
+  denyButton.onclick= close(isDenied);
+  cancelButton.onclick= close(isCanceled);
 }
