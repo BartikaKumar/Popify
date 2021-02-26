@@ -33,12 +33,14 @@ async function alertify(options){
   let confirmButton = document.createElement("div");
   confirmButton.className = "confirmButton";
   confirmButton.innerText= options.confirmButtonText||"Ok";
+  confirmButton.style.background= options.confirmButtonColor || '#3cb371';
   buttonChildren.push(confirmButton);
   // --Cancel Button--
   if(options.cancelButton){
     let cancelButton = document.createElement('div');
     cancelButton.className='cancelButton';
     cancelButton.innerText= options.cancelButtonText||'Cancel';
+    cancelButton.style.background= options.cancelButtonColor || '#aaa';
     buttonChildren.push(cancelButton);
   }
   // --Deny Button--
@@ -46,6 +48,7 @@ async function alertify(options){
     let denyButton = document.createElement('div');
     denyButton.className='denyButton';
     denyButton.innerText= options.denyButtonText||'No';
+    denyButton.style.background= options.denyButtonColor || '#ff7f7f';
     buttonChildren.push(denyButton);
   }
   // --Footer--
