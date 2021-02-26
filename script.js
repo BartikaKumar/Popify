@@ -59,7 +59,7 @@ async function alertify(options){
     alertBox.appendChild(children[i]);
   }
   for(let i=0; i<buttonChildren.length;i++){
-    buttons.appendChild(buttonChildren);
+    buttons.appendChild(buttonChildren[i]);
   }
   children=[];
   buttonChildren=[];
