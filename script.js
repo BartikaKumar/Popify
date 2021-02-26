@@ -20,7 +20,7 @@ async function alertify(options){
   let alertContent = document.createElement('div');
   alertContent.className='alertContent';
   if(options.hasOwnProperty('html')){
-    alertContent.innerHtml= options.html;
+    alertContent.innerHTML= options.html;
   }
   else if(options.hasOwnProperty('text')){
     alertContent.innerText= options.text;
