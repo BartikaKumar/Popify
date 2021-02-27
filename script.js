@@ -257,7 +257,9 @@ var libraryCss=`*{
 // --Append Stylesheet to Document--
 const libraryStylesheet= document.createElement('style');
 libraryStylesheet.innerHTML= libraryCss;
-document.body.appendChild(libraryStylesheet);
+window.onload=function(){
+  document.body.appendChild(libraryStylesheet);
+}
 // --Custom Alert--
 function alertify(options){
   // --Alert Backdrop--
