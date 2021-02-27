@@ -175,7 +175,17 @@ function toastify(options){
   // --Toast Box--
   let toastBox= document.createElement('div');
   toastBox.className= 'toastBox';
-  let children= [];
+  let defaultToastBoxColor='#fff';
+  let defaultToastBoxTextColor= '#555';
+  let defaultToastBoxShadow='0 0 5px 0 rgba(0,0,0,0.5)';
+  if(options.darkMode){
+    defaultToastBoxColor= '#222';
+    defaultToastBoxTextColor='#eee';
+    defaultToastBoxShadow='0 0 5px 0 rgba(255,255,255,0.5)';
+  }
+  toastBox.style.background= options.toastBoxColor || defaultToastBoxColor;
+  toastBox.style.color= options.toastBoxTextColor || defaultToastBoxTextColor;
+  toastBox.style.boxShadow= options.toastBoxShadow || defaultToastBoxShadow;
   // --Toast Contents--
   if(options.hasOwnProperty('html')){
     toastBox.innerHTML= options.html;
