@@ -8,13 +8,29 @@ function alertify(options){
   let defaultAlertBoxColor="#fff";
   let defaultAlertBoxTextColor = "#555";
   let animationIn, animationOut;
+  let animationInDict={
+      "fade-down":"alertFadeDown",
+      "fade-up":"alertFadeUp",
+      "fade":"",
+      "scale-down":"alertScaleDown",
+      "scale-up":"alertScaleUp",
+      "fade-right":"alertFadeRight",
+      "fade-left":"alertFadeLeft",
+  }
+  let animationOutDict={
+      "fade-down":"alertFadeUp",
+      "fade-up":"alertFadeDown",
+      "fade":"",
+      "scale-down":"alertScaleUp",
+      "scale-up":"alertScaleDown",
+      "fade-right":"alertFadeLeft",
+      "fade-left":"alertFadeRight",
+  }
   if(options.animationIn){
-    animationIn = options.animationIn.replace("fade-down","alertFadeDown").replace("fade-up","alertFadeUp").replace("fade","").replace("scale-down","alertScaleDown").replace("scale-up","alertScaleUp") ;
-    animationIn= options.animationIn.replace("fade-right","alertFadeRight").replace("fade-left","alertFadeLeft")
+      animationIn = animationInDict[options.animationIn];
   }
   if(options.animationOut){
-    animationOut = options.animationOut.replace("fade-down","alertFadeUp").replace("fade-up","alertFadeDown").replace("fade","").replace("scale-down","alertScaleUp").replace("scale-up","alertScaleDown");
-    animationOut= options.animationOut.replace("fade-right","alertFadeLeft").replace("fade-left","alertFadeRight")
+      animationOut = animationOutDict[options.animationOut];
   }
   document.body.style.setProperty("--animation-name-in",animationIn);
   document.body.style.setProperty("--animation-name-out",animationOut);
