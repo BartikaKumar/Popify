@@ -186,34 +186,34 @@ function toastify(options){
   // --Toast Animation In
   let animationIn, animationOut;
   let animationInDict={
-      "fade-down":"alertFadeDown",
-      "fade-up":"alertFadeUp",
-      "scale-down":"alertScaleDown",
-      "scale-up":"alertScaleUp",
-      "fade-right":"alertFadeRight",
-      "fade-left":"alertFadeLeft",
+      "fade-down":"toastFadeDown",
+      "fade-up":"toastFadeUp",
+      "scale-down":"toastScaleDown",
+      "scale-up":"toastScaleUp",
+      "fade-right":"toastFadeRight",
+      "fade-left":"toastFadeLeft",
   }
   let animationOutDict={
-      "fade-down":"alertFadeUp",
-      "fade-up":"alertFadeDown",
-      "scale-down":"alertScaleUp",
-      "scale-up":"alertScaleDown",
-      "fade-right":"alertFadeLeft",
-      "fade-left":"alertFadeRight",
+      "fade-down":"toastFadeUp",
+      "fade-up":"toastFadeDown",
+      "scale-down":"toastScaleUp",
+      "scale-up":"toastScaleDown",
+      "fade-right":"toastFadeLeft",
+      "fade-left":"toastFadeRight",
   }
-  animationIn="scaleUp";
-  animationOut='scaleDown';
+  animationIn="toastFadeUp";
+  animationOut='toastFadeUp';
   if(options.animationIn in animationInDict){
       animationIn = animationInDict[options.animationIn] ;
   }
   if(options.animationOut in animationOutDict){
       animationOut = animationOutDict[options.animationOut];
   }
-  document.body.style.setProperty("--animation-name-in",animationIn);
-  document.body.style.setProperty("--animation-name-out",animationOut);
-  toastBox.classList.add("alertBoxOpen");
+  document.body.style.setProperty("--animation-name-in-toast",animationIn);
+  document.body.style.setProperty("--animation-name-out-toast",animationOut);
+  toastBox.classList.add("toastBoxOpen");
   setTimeout(function(){
-      toastBox.classList.remove("alertBoxOpen");
+      toastBox.classList.remove("toastBoxOpen");
   },200)
   // --Toast Contents--
   if(options.hasOwnProperty('html')){
@@ -245,7 +245,7 @@ function toastify(options){
   document.body.appendChild(toastBox);
   // --Toast Close Timer--
   setTimeout(function(){
-    toastBox.classList.add("alertBoxClose");
+    toastBox.classList.add("toastBoxClose");
     setTimeout(function(){
         toastBox.remove();
     },200)
