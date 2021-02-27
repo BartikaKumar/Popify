@@ -191,7 +191,24 @@ function toastify(options){
     toastBox.innerText= options.text;
   }
   // --Toast Position--
-
+  let defaultPosition='top right';
+  let position= options.position || defaultPosition;
+  if(position=='top right'){
+    toastBox.style.top='5vw';
+    toastBox.style.right='5vw';
+  }
+  else if(position=='top left'){
+    toastBox.style.top='5vw';
+    toastBox.style.left='5vw';
+  }
+  else if(position=='bottom right'){
+    toastBox.style.bottom='5vw';
+    toastBox.style.right='5vw';
+  }
+  else if(position=='bottom left'){
+    toastBox.style.bottom='5vw';
+    toastBox.style.left='5vw';
+  }
   // --Append Toast--
   document.body.appendChild(toastBox);
   // --Toast Close Timer--
