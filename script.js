@@ -183,6 +183,38 @@ function toastify(options){
   toastBox.style.color= options.toastBoxTextColor || defaultToastBoxTextColor;
   toastBox.style.boxShadow= options.toastBoxShadow || defaultToastBoxShadow;
   toastBox.style.textAlign= options.toastBoxTextAlign || defaultToastBoxTextAlign;
+  // --Toast Animation In
+  let animationIn, animationOut;
+  let animationInDict={
+      "fade-down":"alertFadeDown",
+      "fade-up":"alertFadeUp",
+      "scale-down":"alertScaleDown",
+      "scale-up":"alertScaleUp",
+      "fade-right":"alertFadeRight",
+      "fade-left":"alertFadeLeft",
+  }
+  let animationOutDict={
+      "fade-down":"alertFadeUp",
+      "fade-up":"alertFadeDown",
+      "scale-down":"alertScaleUp",
+      "scale-up":"alertScaleDown",
+      "fade-right":"alertFadeLeft",
+      "fade-left":"alertFadeRight",
+  }
+  animationIn="scaleUp";
+  animationOut='scaleDown';
+  if(options.animationIn in animationInDict){
+      animationIn = animationInDict[options.animationIn] ;
+  }
+  if(options.animationOut in animationOutDict){
+      animationOut = animationOutDict[options.animationOut];
+  }
+  document.body.style.setProperty("--animation-name-in",animationIn);
+  document.body.style.setProperty("--animation-name-out",animationOut);
+  toastBox.classList.add("alertBoxOpen");
+  setTimeout(function(){
+      toastBox.classList.remove("alertBoxOpen");
+  },200)
   // --Toast Contents--
   if(options.hasOwnProperty('html')){
     toastBox.innerHTML= options.html;
@@ -213,6 +245,9 @@ function toastify(options){
   document.body.appendChild(toastBox);
   // --Toast Close Timer--
   setTimeout(function(){
-    toastBox.remove();
+    toastBox.classList.add("alertBoxClose");
+    setTimeout(function(){
+        toastBox.remove();
+    },200)
   },options.toastCloseTimer)
 }
