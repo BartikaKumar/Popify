@@ -185,8 +185,10 @@ function toastify(options){
   }
   // --Toast Position--
 
+  // --Append Toast--
+  document.body.appendChild(toastBox);
   // --Toast Close Timer--
   setTimeout(function(){
-    close();
+    toastBox.remove();
   },options.toastCloseTimer)
 }
