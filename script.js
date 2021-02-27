@@ -179,11 +179,6 @@ function toastify(options){
   let defaultToastBoxTextColor= '#555';
   let defaultToastBoxShadow='0 0 25px 0 rgba(0,0,0,0.1)';
   let defaultToastBoxTextAlign='left';
-  if(options.darkMode){
-    defaultToastBoxColor= '#222';
-    defaultToastBoxTextColor='#eee';
-    defaultToastBoxShadow='0 0 0 2px rgba(255,255,255,0.2)';
-  }
   toastBox.style.background= options.toastBoxColor || defaultToastBoxColor;
   toastBox.style.color= options.toastBoxTextColor || defaultToastBoxTextColor;
   toastBox.style.boxShadow= options.toastBoxShadow || defaultToastBoxShadow;
