@@ -244,10 +244,11 @@ function toastify(options){
   // --Append Toast--
   document.body.appendChild(toastBox);
   // --Toast Close Timer--
+  let closeTimer= Number(options.toastCloseTimer) || 2500;
   setTimeout(function(){
     toastBox.classList.add("toastBoxClose");
     setTimeout(function(){
         toastBox.remove();
     },200)
-  },options.toastCloseTimer)
+  },closeTimer)
 }
