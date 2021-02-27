@@ -1,3 +1,264 @@
+// --CSS--
+var libraryCss=`*{
+    --animation-name-in:;
+    --animation-name-out:;
+    --animation-name-in-toast:;
+    --animation-name-out-toast:;
+}
+.alertBackdrop{
+  height:100vh;
+  width:100vw;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter:blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.alertBox{
+  padding: 20px;
+  max-width:90vw;
+  border-radius:10px;
+  box-sizing:border-box ;
+  text-align:center;
+}
+.alertOpen{
+    animation:alertBackdropFadeIn 0.2s ease-out !important;
+}
+.alertBoxOpen{
+    animation-duration:0.2s !important;
+    animation-iteration-count:1 !important;
+    animation-timing-function:ease-out !important;
+    animation-name:var(--animation-name-in);
+}
+.alertBoxDark{
+    box-shadow:0 0 0 2px #aaa;
+}
+.alertBoxDark .alertFooter{
+    border-top-color:rgba(255,255,255,0.1);
+}
+.alertBoxDark .alertInput{
+    color:#eee;
+    box-shadow:0 0 0 2px rgba(255,255,255,0.2);
+}
+.alertTitle{
+    font-size:25px;
+    text-align:center;
+    margin-bottom:25px;
+    margin-top:15px;
+    font-weight:bold;
+}
+.alertContent{
+    text-align:center;
+    font-size:15px;
+    margin-bottom:25px;
+}
+.alertButtons{
+    display:flex;
+    justify-content:center;
+}
+.alertButtons div{
+    text-align:center;
+    color:white;
+    border-radius:5px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:16px;
+    font-weight:bold;
+    margin-right:10px;
+    margin-left:10px;
+    display:flex;
+    align-items:center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.alertButtons div:active{
+    transform:scale(0.9);
+}
+.alertFooter{
+    font-size:15px;
+    height:50px;
+    line-height:50px;
+    border-top:1px solid rgba(0,0,0,0.1);
+    margin-top:25px;
+    text-align:center;
+    margin-bottom:-15px;
+}
+.alertInput{
+    width:80%;
+    padding:10px;
+    font-size:15px;
+    outline:none;
+    border:none;
+    border-radius:5px;
+    box-shadow:0 0 0 2px rgba(0,0,0,0.2);
+    background:transparent ;
+    margin-bottom:25px;
+}
+.alertClose{
+    animation:alertBackdropFadeIn 0.2s ease-in !important;
+    animation-direction:reverse !important;
+    opacity: 0 !important;
+}
+.alertBoxClose{
+    animation-duration:0.2s !important;
+    animation-iteration-count:1 !important;
+    animation-timing-function:ease-out !important;
+    animation-direction:reverse !important;
+    animation-name:var(--animation-name-out);
+}
+@keyframes alertScaleUp{
+    from{
+        transform:scale(0.75);
+    }
+    to{
+        transform:scale(1);
+    }
+}
+@keyframes alertScaleDown{
+    from{
+        transform:scale(1.25);
+    }
+    to{
+        transform:scale(1);
+    }
+}
+@keyframes alertFadeDown{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(0px);
+    }
+}
+@keyframes alertFadeUp{
+    from{
+        transform:translateY(100px);
+    }
+    to{
+        transform:translateY(0px);
+    }
+}
+@keyframes alertFadeRight{
+    from{
+        transform:translateX(-100px);
+    }
+    to{
+        transform:translateX(0px);
+    }
+}
+@keyframes alertFadeLeft{
+    from{
+        transform:translateX(100px);
+    }
+    to{
+        transform:translateX(0px);
+    }
+}
+@keyframes alertBackdropFadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+.toastBox{
+    position:fixed;
+    background:white;
+    border-radius:5px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:16px;
+    max-width:90vw;
+    box-sizing:border-box ;
+    z-index:1000;
+}
+@keyframes toastScaleUp{
+    from{
+        transform:scale(0.75);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+@keyframes toastScaleDown{
+    from{
+        transform:scale(1.25);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+@keyframes toastFadeDown{
+    from{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0px);
+        opacity:1;
+    }
+}
+@keyframes toastFadeUp{
+    from{
+        transform:translateY(100px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0px);
+        opacity:1;
+    }
+}
+@keyframes toastFadeRight{
+    from{
+        transform:translateX(-100px);
+        opacity:0;
+    }
+    to{
+        transform:translateX(0px);
+        opacity:1;
+    }
+}
+@keyframes toastFadeLeft{
+    from{
+        transform:translateX(100px);
+        opacity:0;
+    }
+    to{
+        transform:translateX(0px);
+        opacity:1;
+    }
+}
+.toastBoxOpen{
+    animation-duration:0.2s !important;
+    animation-iteration-count:1 !important;
+    animation-timing-function:ease-out !important;
+    animation-name:var(--animation-name-in-toast);
+}
+.toastBoxClose{
+    animation-duration:0.2s !important;
+    animation-iteration-count:1 !important;
+    animation-timing-function:ease-out !important;
+    animation-direction:reverse !important;
+    animation-name:var(--animation-name-out-toast);
+}`
+// --Append Stylesheet to Document--
+const libraryStylesheet= document.createElement('style');
+libraryStylesheet.innerHTML= libraryCss;
+document.body.appendChild(libraryStylesheet);
+// --Custom Alert--
 function alertify(options){
   // --Alert Backdrop--
   let alertBackdrop= document.createElement('div');
@@ -171,6 +432,7 @@ function alertify(options){
       },200)
   }
 };
+// --Custom Toast--
 function toastify(options){
   // --Toast Box--
   let toastBox= document.createElement('div');
