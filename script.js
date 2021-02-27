@@ -167,7 +167,26 @@ function alertify(options){
       alertBackdrop.classList.add("alertClose");
       alertBox.classList.add("alertBoxClose");
       setTimeout(function(){
-          alertBackdrop.remove()
+          alertBackdrop.remove();
       },200)
   }
 };
+function toastify(options){
+  // --Toast Box--
+  let toastBox= document.createElement('div');
+  toastBox.className= 'toastBox';
+  let children= [];
+  // --Toast Contents--
+  if(options.hasOwnProperty('html')){
+    toastBox.innerHTML= options.html;
+  }
+  else if(options.hasOwnProperty('text')){
+    toastBox.innerText= options.text;
+  }
+  // --Toast Position--
+
+  // --Toast Close Timer--
+  setTimeout(function(){
+    close();
+  },options.toastCloseTimer)
+}
