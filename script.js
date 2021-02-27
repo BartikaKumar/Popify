@@ -1,14 +1,40 @@
-async function alertify(options){
+function alertify(options){
   // --Alert Backdrop--
   let alertBackdrop= document.createElement('div');
   alertBackdrop.className='alertBackdrop';
   // --Alert Box--
   let alertBox = document.createElement("div");
   alertBox.className = 'alertBox';
+  let defaultAlertBoxColor="#fff";
+  let defaultAlertBoxTextColor = "#555";
+  let animationIn, animationOut;
+  if(options.animationIn){
+    animationIn = options.animationIn.replace("fade-down","alertFadeDown").replace("fade-up","alertFadeUp").replace("fade","").replace("scale-down","alertScaleDown").replace("scale-up","alertScaleUp") ;
+    animationIn= options.animationIn.replace("fade-right","alertFadeRight").replace("fade-left","alertFadeLeft")
+  }
+  if(options.animationOut){
+    animationOut = options.animationOut.replace("fade-down","alertFadeUp").replace("fade-up","alertFadeDown").replace("fade","").replace("scale-down","alertScaleUp").replace("scale-up","alertScaleDown");
+    animationOut= options.animationOut.replace("fade-right","alertFadeLeft").replace("fade-left","alertFadeRight")
+  }
+  document.body.style.setProperty("--animation-name-in",animationIn);
+  document.body.style.setProperty("--animation-name-out",animationOut);
+
   if(options.darkMode){
     alertBox.classList.add('alertBoxDark');
+    defaultAlertBoxColor = "#222";
+    defaultAlertBoxTextColor = "#eee";
   }
+  alertBox.style.background= options.alertBoxColor || defaultAlertBoxColor;
+  alertBox.style.color= options.alertBoxTextColor || defaultAlertBoxTextColor;
   let children= [];
+
+  alertBackdrop.classList.add("alertOpen");
+  alertBox.classList.add("alertBoxOpen");
+  setTimeout(function(){
+      alertBackdrop.classList.remove("alertOpen");
+      alertBox.classList.remove("alertBoxOpen");
+
+  },200)
   // --Alert Title--
   let alertTitle = document.createElement('div');
   alertTitle.className = 'alertTitle';
@@ -26,7 +52,7 @@ async function alertify(options){
   children.push(alertContent);
   // --ALert Input--
   if(options.input){
-    let alertInput = document.createElement('input');
+   let alertInput = document.createElement('input');
     if(options.inputSetAttributes){
       let inputAttributes= options.inputSetAttributes;
       let attributes= Object.keys(inputAttributes);
@@ -48,6 +74,13 @@ async function alertify(options){
   confirmButton.className = "confirmButton";
   confirmButton.innerHTML= options.confirmButtonText||"Ok";
   confirmButton.style.background= options.confirmButtonColor || '#3cb371';
+  confirmButton.addEventListener("click",function(){
+  let alertInputValue= getInputValue();
+  if(options.hasOwnProperty("onConfirmed")){
+      options.onConfirmed(alertInputValue);
+  }
+  if(!options.alertPersistOnConfirmed){close()}
+  });
   buttonChildren.push(confirmButton);
   // --Cancel Button--
   if(options.cancelButton){
@@ -55,6 +88,13 @@ async function alertify(options){
     cancelButton.className='cancelButton';
     cancelButton.innerHTML= options.cancelButtonText||'Cancel';
     cancelButton.style.background= options.cancelButtonColor || '#aaa';
+    cancelButton.addEventListener("click",function(){
+    let alertInputValue= getInputValue();
+    if(options.hasOwnProperty("onCanceled")){
+      options.onCanceled(alertInputValue);
+    }
+    if(!options.alertPersistOnCanceled){close()}
+    });
     buttonChildren.push(cancelButton);
   }
   // --Deny Button--
@@ -62,7 +102,14 @@ async function alertify(options){
     let denyButton = document.createElement('div');
     denyButton.className='denyButton';
     denyButton.innerHTML= options.denyButtonText||'No';
-    denyButton.style.background= options.denyButtonColor || '#ff7f7f';
+    denyButton.style.background= options.denyButtonColor || '#ff595e';
+    denyButton.addEventListener("click",function(){
+    let alertInputValue= getInputValue();
+    if(options.hasOwnProperty("onDenied")){
+      options.onDenied(alertInputValue);
+    }
+    if(!options.alertPersistOnDenied){close()}
+    });
     buttonChildren.push(denyButton);
   }
   // --Footer--
@@ -71,6 +118,16 @@ async function alertify(options){
     footer.className='alertFooter';
     footer.innerHTML=options.footer;
     children.push(footer);
+  }
+  // --Auto Timer Close
+  if(options.hasOwnProperty("autoTimerClose")){
+      setTimeout(function(){
+          let alertInputValue= getInputValue();
+    if(options.hasOwnProperty("onAutoTimerClose")){
+      options.onAutoTimerClose(alertInputValue);
+    }
+    close();
+      }, options.autoTimerClose)
   }
   // --Append Alert--
   document.body.appendChild(alertBackdrop);
@@ -82,21 +139,19 @@ async function alertify(options){
   for(let i=0; i<buttonChildren.length;i++){
     buttons.appendChild(buttonChildren[i]);
   }
-  children=[];
-  buttonChildren=[];
   // --Afterwards--
-  function close(action){
-    let stats={
-      isConfirmed:false,
-      isDenied:false,
-      isCanceled:false,
-      timeUp:false,
-      inputValue: alertInput.value,
-    };
-    stats.action= true;
-    return stats;
-  };
-  confirmButton.onclick= close(isConfirmed);
-  denyButton.onclick= close(isDenied);
-  cancelButton.onclick= close(isCanceled);
-}
+  function getInputValue(){
+      let alertInputValue = "No Input";
+    if(document.querySelector(".alertBox .alertInput")){
+  alertInputValue= document.querySelector(".alertBox .alertInput").value;
+      return alertInputValue;
+  }
+  }
+  function close(){
+      alertBackdrop.classList.add("alertClose");
+      alertBox.classList.add("alertBoxClose");
+      setTimeout(function(){
+          alertBackdrop.remove()
+      },200)
+  }
+};
