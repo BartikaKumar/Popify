@@ -455,6 +455,9 @@ function alertify(options){
 };
 // --Custom Toast--
 function toastify(options){
+
+  const docBody= document.body || document.getElementsByTagName('body')[0];
+
   // --Toast Box--
   let toastBox= document.createElement('div');
   toastBox.className= 'toastBox';
