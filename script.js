@@ -271,6 +271,9 @@ function alertify(options){
   // --Alert Backdrop--
   let alertBackdrop= document.createElement('div');
   alertBackdrop.className='alertBackdrop';
+  if(options.removeBackdropBlur){
+    alertBackdrop.style.backdropFilter='blur(0px)';
+  }
   // --Alert Box--
   let alertBox = document.createElement("div");
   alertBox.className = 'alertBox';
