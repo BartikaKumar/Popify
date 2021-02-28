@@ -21,6 +21,7 @@ var libraryCss=`*{
   justify-content:center;
   align-items:center;
   z-index:999;
+  transition:0.2s;
 }
 .alertBox{
   padding: 20px;
