@@ -271,6 +271,9 @@ if(libraryStylesheet.styleSheet){
 else{
   libraryStylesheet.appendChild(document.createTextNode(libraryCss));
 }
+
+const docBody= document.body || document.getElementsByTagName('body')[0];
+
 // --Custom Alert--
 function alertify(options){
   // --Alert Backdrop--
@@ -279,7 +282,7 @@ function alertify(options){
   if(options.removeBackdropBlur){
     alertBackdrop.style.backdropFilter='blur(0px)';
   }
-  document.body.classList.add('alertifyDisableScroll');
+  docBody.classList.add('alertifyDisableScroll');
   // --Alert Box--
   let alertBox = document.createElement("div");
   alertBox.className = 'alertBox';
@@ -310,8 +313,8 @@ function alertify(options){
   if(options.animationOut){
       animationOut = animationOutDict[options.animationOut];
   }
-  document.body.style.setProperty("--animation-name-in",animationIn);
-  document.body.style.setProperty("--animation-name-out",animationOut);
+  docBody.style.setProperty("--animation-name-in",animationIn);
+  docBody.style.setProperty("--animation-name-out",animationOut);
 
   if(options.darkMode){
     alertBox.classList.add('alertBoxDark');
@@ -424,7 +427,7 @@ function alertify(options){
       }, options.autoTimerClose)
   }
   // --Append Alert--
-  document.body.appendChild(alertBackdrop);
+  docBody.appendChild(alertBackdrop);
   alertBackdrop.appendChild(alertBox);
   // --Append Alert Contents--
   for(let i=0;i<children.length;i++){
@@ -488,8 +491,8 @@ function toastify(options){
   if(options.animationOut in animationOutDict){
       animationOut = animationOutDict[options.animationOut];
   }
-  document.body.style.setProperty("--animation-name-in-toast",animationIn);
-  document.body.style.setProperty("--animation-name-out-toast",animationOut);
+  docBody.style.setProperty("--animation-name-in-toast",animationIn);
+  docBody.style.setProperty("--animation-name-out-toast",animationOut);
   toastBox.classList.add("toastBoxOpen");
   setTimeout(function(){
       toastBox.classList.remove("toastBoxOpen");
@@ -521,13 +524,13 @@ function toastify(options){
     toastBox.style.left='5vw';
   }
   // --Append Toast--
-  document.body.appendChild(toastBox);
+  docBody.appendChild(toastBox);
   // --Toast Close Timer--
   let closeTimer= Number(options.toastCloseTimer) || 2500;
   setTimeout(function(){
     toastBox.classList.add("toastBoxClose");
     setTimeout(function(){
-        document.body.classList.remove('alertifyDisableScroll');
+        docBody.classList.remove('alertifyDisableScroll');
         toastBox.remove();
     },200)
   },closeTimer)
