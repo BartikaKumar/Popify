@@ -272,10 +272,11 @@ else{
   libraryStylesheet.appendChild(document.createTextNode(libraryCss));
 }
 
-const docBody= document.body || document.getElementsByTagName('body')[0];
-
 // --Custom Alert--
 function alertify(options){
+
+  const docBody= document.body || document.getElementsByTagName('body')[0];
+
   // --Alert Backdrop--
   let alertBackdrop= document.createElement('div');
   alertBackdrop.className='alertBackdrop';
