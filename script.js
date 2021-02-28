@@ -255,9 +255,16 @@ var libraryCss=`*{
     animation-name:var(--animation-name-out-toast);
 }`
 // --Append Stylesheet to Document--
+const documentHead= document.head || document.getElementsByTagName('head')[0];
 const libraryStylesheet= document.createElement('style');
-libraryStylesheet.innerHTML= libraryCss;
-document.body.appendChild(libraryStylesheet);
+documentHead.appendChild(libraryStylesheet);
+libraryStylesheet.type= 'text/css';
+if(libraryStylesheet.styleSheet){
+  libraryStylesheet.styleSheet.cssText= libraryCss;
+}
+else{
+  libraryStylesheet.appendChild(document.createTextNode(libraryCss));
+}
 // --Custom Alert--
 function alertify(options){
   // --Alert Backdrop--
