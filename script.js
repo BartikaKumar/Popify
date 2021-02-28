@@ -449,6 +449,7 @@ function alertify(options){
       alertBackdrop.classList.add("alertClose");
       alertBox.classList.add("alertBoxClose");
       setTimeout(function(){
+          docBody.classList.remove('alertifyDisableScroll');
           alertBackdrop.remove();
       },200)
   }
@@ -534,7 +535,6 @@ function toastify(options){
   setTimeout(function(){
     toastBox.classList.add("toastBoxClose");
     setTimeout(function(){
-        docBody.classList.remove('alertifyDisableScroll');
         toastBox.remove();
     },200)
   },closeTimer)
