@@ -5,6 +5,10 @@ var libraryCss=`*{
     --animation-name-in-toast:;
     --animation-name-out-toast:;
 }
+.alertifyDisableScroll{
+  height:100vh;
+  overflow:hidden;
+}
 .alertBackdrop{
   height:100vh;
   width:100vw;
@@ -274,6 +278,7 @@ function alertify(options){
   if(options.removeBackdropBlur){
     alertBackdrop.style.backdropFilter='blur(0px)';
   }
+  document.body.classList.add('alertifyDisableScroll');
   // --Alert Box--
   let alertBox = document.createElement("div");
   alertBox.className = 'alertBox';
@@ -521,6 +526,7 @@ function toastify(options){
   setTimeout(function(){
     toastBox.classList.add("toastBoxClose");
     setTimeout(function(){
+        document.body.classList.remove('alertifyDisableScroll');
         toastBox.remove();
     },200)
   },closeTimer)
