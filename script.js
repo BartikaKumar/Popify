@@ -40,9 +40,6 @@ var libraryCss=`*{
     animation-timing-function:ease-out !important;
     animation-name:var(--animation-name-in);
 }
-.alertBoxDark{
-    box-shadow:0 0 0 2px #aaa;
-}
 .alertBoxDark .alertFooter{
     border-top-color:rgba(255,255,255,0.1);
 }
