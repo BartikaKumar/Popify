@@ -40,6 +40,9 @@ var libraryCss=`*{
     animation-timing-function:ease-out !important;
     animation-name:var(--animation-name-in);
 }
+.alertBoxDark{
+  box-shadow:0 0 20px 3px rgba(255,255,255,0.2);
+}
 .alertBoxDark .alertFooter{
     border-top-color:rgba(255,255,255,0.1);
 }
@@ -322,7 +325,7 @@ function alertify(options){
 
   if(options.darkMode){
     alertBox.classList.add('alertBoxDark');
-    defaultAlertBoxColor = "#222";
+    defaultAlertBoxColor = "#121212";
     defaultAlertBoxTextColor = "#eee";
   }
   alertBox.style.background= options.alertBoxColor || defaultAlertBoxColor;
