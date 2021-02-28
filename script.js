@@ -255,6 +255,7 @@ var libraryCss=`*{
     animation-name:var(--animation-name-out-toast);
 }`
 // --Append Stylesheet to Document--
+
 const documentHead= document.head || document.getElementsByTagName('head')[0];
 const libraryStylesheet= document.createElement('style');
 documentHead.appendChild(libraryStylesheet);
