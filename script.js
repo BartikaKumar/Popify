@@ -59,7 +59,7 @@ var libraryCss=`*{
 }
 .alertContent{
     text-align:center;
-    font-size:15px;
+    font-size:17px;
     margin-bottom:25px;
 }
 .alertButtons{
