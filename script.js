@@ -26,6 +26,7 @@ var libraryCss=`*{
 .alertBox{
   padding: 20px;
   max-width:90vw;
+  min-width:300px;
   border-radius:10px;
   box-sizing:border-box ;
   text-align:center;
@@ -287,6 +288,11 @@ function alertify(options){
   // --Alert Box--
   let alertBox = document.createElement("div");
   alertBox.className = 'alertBox';
+  if(options.alertWidth){
+    alertBox.style.width= options.alertWidth;
+    alertBox.style.minWidth='none';
+    alertBox.style.maxWidth='none';
+  }
   let defaultAlertBoxColor="#fff";
   let defaultAlertBoxTextColor = "#555";
   let animationIn, animationOut;
@@ -470,6 +476,10 @@ function toastify(options){
   toastBox.style.color= options.toastBoxTextColor || defaultToastBoxTextColor;
   toastBox.style.boxShadow= options.toastBoxShadow || defaultToastBoxShadow;
   toastBox.style.textAlign= options.toastBoxTextAlign || defaultToastBoxTextAlign;
+  if(options.toastWidth){
+    toastBox.style.width= options.toastWidth;
+    toastBox.style.maxWidth='none';
+  }
   // --Toast Animation In
   let animationIn, animationOut;
   let animationInDict={
@@ -488,8 +498,8 @@ function toastify(options){
       "fade-right":"toastFadeLeft",
       "fade-left":"toastFadeRight",
   }
-  animationIn="toastFadeUp";
-  animationOut='toastFadeUp';
+  animationIn="toastFadeDown";
+  animationOut='toastFadeRight';
   if(options.animationIn in animationInDict){
       animationIn = animationInDict[options.animationIn] ;
   }
